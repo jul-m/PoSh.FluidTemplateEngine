@@ -9,8 +9,7 @@ on:
         default: ''
       publish-psgallery:
         description: 'Publish the resulting module to PowerShell Gallery?'
-        required: false
-        default: 'false'
+        type: boolean
 
 permissions:
   contents: write
