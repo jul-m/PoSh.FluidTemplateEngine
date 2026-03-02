@@ -20,9 +20,6 @@
                 'Rendering'
                 'Markdown'
                 'Automation'
-                'CodeGeneration'
-                'Binary'
-                'DotNet'
             )
             LicenseUri = 'https://github.com/jul-m/PoSh.FluidTemplateEngine/blob/main/LICENSE'
             ProjectUri = 'https://github.com/jul-m/PoSh.FluidTemplateEngine'

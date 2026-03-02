@@ -2,10 +2,6 @@
 
 Thank you for your interest in contributing! This document provides guidelines and instructions for contributing to this project.
 
-## Code of Conduct
-
-This project has adopted the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
-
 ## How to Contribute
 
 ### Reporting Bugs
