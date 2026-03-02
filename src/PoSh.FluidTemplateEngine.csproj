@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <!-- Package metadata -->
-    <Version>2.31.0</Version>
+    <Version>2.31.1</Version>
     <Authors>jul-m</Authors>
     <Description>PowerShell module for rendering Liquid templates using the Fluid .NET library</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>

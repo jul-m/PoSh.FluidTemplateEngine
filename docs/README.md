@@ -41,6 +41,6 @@ Get-Help <cmdlet-name> -Examples
 
 ## Module Information
 
-- **Module Name**:[PoSh.FluidTemplateEngine](https://github.com/jul-m/PoSh.FluidTemplateEngine)- **Version**: `2.31.0`
+- **Module Name**:[PoSh.FluidTemplateEngine](https://github.com/jul-m/PoSh.FluidTemplateEngine)- **Version**: `2.31.1`
 - **Author**: jul-m
 

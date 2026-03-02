@@ -1,6 +1,6 @@
 @{
     RootModule = 'PoSh.FluidTemplateEngine.dll'
-    ModuleVersion = '2.31.0'
+    ModuleVersion = '2.31.1'
     GUID = '866c43a7-7eb8-4bac-b42e-0ad2398edb34'
     Author = 'jul-m'
     CompanyName = 'jul-m'
@@ -9,6 +9,20 @@
     PowerShellVersion = '7.0'
     DotNetFrameworkVersion = '8.0'
     CLRVersion = '8.0'
+
+	CmdletsToExport = @(
+		'Format-LiquidString'
+		'Get-FluidModuleConfig'
+		'Invoke-FluidFile'
+		'Invoke-FluidTemplate'
+		'New-FluidTemplate'
+		'Register-FluidType'
+		'Register-LiquidBlock'
+		'Register-LiquidFilter'
+		'Register-LiquidOperator'
+		'Register-LiquidTag'
+		'Set-FluidModuleConfig'
+	)
 
     PrivateData = @{
         PSData = @{
