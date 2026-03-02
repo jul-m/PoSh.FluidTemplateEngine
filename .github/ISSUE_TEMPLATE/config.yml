@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/jul-m/PoSh.FluidTemplateEngine/blob/main/docs/README.md
+    about: Check the documentation before opening an issue
+  - name: Fluid Template Engine
+    url: https://github.com/sebastienros/fluid
+    about: For issues with the underlying Fluid library itself

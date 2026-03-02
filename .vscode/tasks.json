@@ -1,0 +1,64 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "group": "build",
+            "label": "Build All",
+            "type": "shell",
+            "command": "pwsh",
+            "args": ["-NonInteractive", "./run.ps1", "-Mode", "All"],
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always"
+            },
+            "options": {
+                "statusbar": {
+                    // Extension actboy168.tasks: Add shortcut in status bar
+                    "hide": false,
+                    "icon": {
+                        "id": "build"
+                    }
+                }
+            }
+        },
+        {
+            "group": "build",
+            "label": "Build PowerShell Module",
+            "type": "shell",
+            "command": "pwsh",
+            "args": ["-NonInteractive", "./run.ps1", "-Mode", "Package"],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "presentation": {
+                "reveal": "always"
+            }
+        },
+        {
+            "group": "build",
+            "label": "Build Documentation",
+            "type": "shell",
+            "command": "pwsh",
+            "args": ["-NonInteractive","./run.ps1", "-Mode", "Documentation"],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "presentation": {
+                "reveal": "always"
+            }
+        },
+        {
+            "group": "test",
+            "label": "Run Tests",
+            "type": "shell",
+            "command": "pwsh",
+            "args": ["-NonInteractive","./run.ps1", "-Mode", "Tests"],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "presentation": {
+                "reveal": "always"
+            }
+        }
+    ]
+}

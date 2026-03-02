@@ -1,0 +1,36 @@
+# EditorConfig — https://editorconfig.org
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+
+[*.{cs,csx}]
+indent_size = 4
+
+[*.{ps1,psm1,psd1}]
+indent_size = 4
+indent_style = tab
+
+[*.{yml,yaml}]
+indent_size = 2
+
+[*.{json,jsonc}]
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.{liquid,html}]
+indent_size = 2
+
+[*.{xml,props,csproj,sln}]
+indent_size = 2
+
+[Makefile]
+indent_style = tab

@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Package metadata -->
+    <Version>0.1.0</Version>
+    <Authors>jul-m</Authors>
+    <Description>PowerShell module for rendering Liquid templates using the Fluid .NET library</Description>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/jul-m/PoSh.FluidTemplateEngine</RepositoryUrl>
+
+    <!-- Build settings -->
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>PoSh.FluidTemplateEngine</AssemblyName>
+    <RootNamespace>PoSh.FluidTemplateEngine</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <!-- <NoWarn>$(NoWarn);1591;CA2255;FLUID001</NoWarn> -->
+    <NoWarn>FLUID001;1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PowerShellStandard.Library" Version="5.1.1" />
+    <PackageReference Include="System.Management.Automation" Version="7.4.10" />
+    <PackageReference Include="Fluid.Core" Version="2.31.0" />
+
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="8.0.0" />
+
+    <PackageReference Include="MatejKafka.XmlDoc2CmdletDoc" Version="0.7.0">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../PoSh.FluidTemplateEngine.psd1" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>
