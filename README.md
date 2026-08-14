@@ -10,6 +10,8 @@ A **PowerShell module** for rendering [**Liquid**](https://shopify.github.io/liq
 
 Render from strings or files, extend Liquid with PowerShell-backed filters, tags, blocks and operators, and enforce strict variable/filter checking — all as native PowerShell cmdlets.
 
+> 📘 **[Configuration Reference](docs/Configuration-Reference.md)** — the complete guide to every feature: all `Set-FluidModuleConfig` options, custom filters/tags/blocks/operators, macros, strict modes, whitespace control, includes, and .NET type access.
+
 ---
 
 ## Table of Contents
@@ -100,7 +102,7 @@ Format-LiquidString -Source '{{ name | shout }}' -Model @{ name = 'hello' }
 # Output: HELLO
 ```
 
-> For macros, custom tags/blocks/operators, strict modes, and more, see the [Advanced Guide](docs/Advanced-Guide.md). Runnable scripts are also available in [`examples/`](examples/).
+> For macros, custom tags/blocks/operators, strict modes, and every other feature, see the [Configuration Reference](docs/Configuration-Reference.md). Runnable scripts are also available in [`examples/`](examples/).
 
 ---
 
@@ -126,9 +128,9 @@ Format-LiquidString -Source '{{ name | shout }}' -Model @{ name = 'hello' }
 
 | Resource | Description |
 |----------|-------------|
+| ⭐ [Configuration Reference](docs/Configuration-Reference.md) | **Start here.** Every `Set-FluidModuleConfig` option, custom filters/tags/blocks/operators, macros, whitespace control, strict modes, includes, encoding, and .NET type access |
 | [Cmdlet Reference](docs/README.md) | Full auto-generated reference for every cmdlet |
-| [Advanced Guide](docs/Advanced-Guide.md) | Custom filters/tags/blocks/operators, macros, strict modes, whitespace control, localization, architecture, patterns & recipes |
-| [Configuration Reference](docs/Configuration-Reference.md) | Every `Set-FluidModuleConfig` option, output encoding, and model name comparison |
+| [Advanced Guide](docs/Advanced-Guide.md) | Architecture, caching internals, the full Liquid syntax cheat sheet, and patterns & recipes |
 | [Examples](examples/) | Runnable example scripts |
 | [Contributing Guide](CONTRIBUTING.md) | Build, test, coding conventions, and how to submit changes |
 

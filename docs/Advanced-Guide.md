@@ -1,8 +1,6 @@
 # Advanced Guide — PoSh.FluidTemplateEngine
 
-This guide covers advanced features of the module beyond the standard cmdlet documentation.
-
-> Looking for the full list of `Set-FluidModuleConfig` options? See the [Configuration Reference](Configuration-Reference.md).
+This guide is a deep dive into module internals, the full Liquid syntax, and usage patterns. For the full `Set-FluidModuleConfig` option table and everyday usage of every feature (custom filters/tags/blocks/operators, macros, strict modes, whitespace control, includes, .NET type access), start with the [Configuration Reference](Configuration-Reference.md).
 
 ---
 
