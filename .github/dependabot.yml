@@ -1,0 +1,22 @@
+version: 2
+
+updates:
+  # GitHub Actions used in .github/workflows/
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+
+  # .NET dependencies (NuGet packages referenced by src/PoSh.FluidTemplateEngine.csproj)
+  - package-ecosystem: "nuget"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      dotnet:
+        patterns:
+          - "*"
