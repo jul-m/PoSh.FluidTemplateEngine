@@ -8,6 +8,7 @@ The complete reference for using the module: every `Set-FluidModuleConfig` optio
 
 ## Table of Contents
 
+- [Basic Usage](#basic-usage)
 - [Viewing & Resetting Configuration](#viewing--resetting-configuration)
 - [All Configuration Options](#all-configuration-options)
 - [Custom Filters](#custom-filters)
@@ -21,6 +22,61 @@ The complete reference for using the module: every `Set-FluidModuleConfig` optio
 - [Strict Modes](#strict-modes)
 - [Include & Render](#include--render)
 - [Advanced Configuration](#advanced-configuration)
+
+---
+
+## Basic Usage
+
+### One-Shot Rendering
+
+`Format-LiquidString` parses and renders a template in a single call — the simplest way to render a one-off template:
+
+```powershell
+Format-LiquidString -Source 'Hello {{ name }}!' -Model @{ name = 'Alice' }
+# Output: Hello Alice!
+```
+
+### Compile + Render (Recommended for Repeated Use)
+
+`New-FluidTemplate` compiles a template once into a reusable object; pipe it into `Invoke-FluidTemplate` for each render, avoiding re-parsing the same source on every call:
+
+```powershell
+$template = New-FluidTemplate -Source 'Hi {{ name }}, welcome!'
+$template | Invoke-FluidTemplate -Model @{ name = 'Bob' }
+# Output: Hi Bob, welcome!
+```
+
+### Render from File with Includes
+
+`Invoke-FluidFile` renders a template stored on disk. Set `-TemplateRoot` (globally via `Set-FluidModuleConfig`, or per-call) so `{% include %}` / `{% render %}` can resolve partials:
+
+```powershell
+Set-FluidModuleConfig -TemplateRoot './templates'
+Invoke-FluidFile -Path './templates/main.liquid' -Model @{ title = 'Home' }
+```
+
+### Complex Data Models
+
+Any combination of hashtables, arrays, and `PSCustomObject`s works as a model:
+
+```powershell
+$model = @{
+    title = 'Products'
+    items = @(
+        @{ name = 'Widget'; price = 9.99 }
+        @{ name = 'Gadget'; price = 24.95 }
+    )
+}
+
+$source = @'
+# {{ title }}
+{% for item in items %}
+- {{ item.name }}: ${{ item.price }}
+{% endfor %}
+'@
+
+Format-LiquidString -Source $source -Model $model
+```
 
 ---
 
