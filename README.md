@@ -102,7 +102,7 @@ Format-LiquidString -Source '{{ name | shout }}' -Model @{ name = 'hello' }
 # Output: HELLO
 ```
 
-> For macros, custom tags/blocks/operators, strict modes, and every other feature, see the [Configuration Reference](docs/Configuration-Reference.md). Runnable scripts are also available in [`examples/`](examples/).
+> For macros, custom tags/blocks/operators, strict modes, and every other feature, see the [Configuration Reference](docs/Configuration-Reference.md) — or the [Advanced Guide](docs/Advanced-Guide.md) for architecture, internals, and patterns & recipes. Runnable scripts are also available in [`examples/`](examples/).
 
 ---
 
