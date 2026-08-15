@@ -1,12 +1,13 @@
 # Advanced Guide — PoSh.FluidTemplateEngine
 
-This guide covers advanced features of the module beyond the standard cmdlet documentation.
+This guide is a deep dive into module internals, the full Liquid syntax, and usage patterns. For the full `Set-FluidModuleConfig` option table and everyday usage of every feature (custom filters/tags/blocks/operators, macros, strict modes, whitespace control, includes, .NET type access), start with the [Configuration Reference](Configuration-Reference.md).
 
 ---
 
 ## Table of Contents
 
 - [Architecture Overview](#architecture-overview)
+  - [Dependencies](#dependencies)
 - [Custom Tags](#custom-tags)
 - [Custom Blocks](#custom-blocks)
 - [Custom Operators](#custom-operators)
@@ -63,6 +64,17 @@ The module uses a **fingerprint-based caching** engine:
 | `ValidatingTemplateCache` | Decorator of Fluid's template cache. Validates strict filters on included templates. |
 | `ScriptBlockBinaryExpression` | Binary expression that delegates custom operator evaluation to a PowerShell ScriptBlock. |
 | `FluidModuleConfiguration` | Configuration object persisted in a PS global variable (`$Global:FluidModuleConfiguration`). |
+
+### Dependencies
+
+| Package | Role |
+|---------|------|
+| [Fluid.Core](https://github.com/sebastienros/fluid) | Liquid template engine |
+| PowerShellStandard.Library | PowerShell Standard API |
+| System.Management.Automation | PowerShell runtime API |
+| Microsoft.Extensions.FileProviders.Physical | File system provider for includes |
+
+> See [`src/PoSh.FluidTemplateEngine.csproj`](../src/PoSh.FluidTemplateEngine.csproj) for the exact versions currently pinned.
 
 ---
 
