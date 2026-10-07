@@ -1,5 +1,9 @@
 name: Release
 
+run-name: >-
+  ${{ inputs.prerelease-name != '' && format('Prerelease {0}', inputs.prerelease-name) || 'Release' }}
+  #${{ github.run_number }}${{ inputs.publish-psgallery && ' and publish PSGallery' || '' }}
+
 on:
   workflow_dispatch:
     inputs:
@@ -28,18 +32,31 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Compute release tag
+      - name: Compute release tag and update version files
         id: compute-tag
+        env:
+          PRERELEASE_NAME: ${{ github.event.inputs.prerelease-name }}
         run: |  # shell
           set -e
-          # read version from csproj
-          version=$(grep -oP '(?<=<Version>)[^<]+' src/PoSh.FluidTemplateEngine.csproj)
-          if [ -z "$version" ]; then
-            echo "Could not determine version from csproj" >&2
+          csproj=src/PoSh.FluidTemplateEngine.csproj
+          psd1=PoSh.FluidTemplateEngine.psd1
+
+          # major.minor follow the Fluid.Core package reference; patch counts existing stable tags from 0
+          base=$(grep -oP '<PackageReference Include="Fluid\.Core" Version="\K[0-9]+\.[0-9]+' "$csproj")
+          if [ -z "$base" ]; then
+            echo "Could not determine Fluid.Core version from csproj" >&2
             exit 1
           fi
-          if [ "${{ github.event.inputs.prerelease-name }}" != "" ]; then
-            tag="${version}-${{ github.event.inputs.prerelease-name }}"
+          patch=0
+          while read -r t; do
+            if [[ "$t" =~ ^${base//./\\.}\.([0-9]+)$ ]] && (( BASH_REMATCH[1] >= patch )); then
+              patch=$((BASH_REMATCH[1] + 1))
+            fi
+          done < <(git tag --list "${base}.*")
+          version="${base}.${patch}"
+
+          if [ -n "$PRERELEASE_NAME" ]; then
+            tag="${version}-${PRERELEASE_NAME}"
             prerelease=true
           else
             tag="$version"
@@ -53,13 +70,20 @@ jobs:
           echo "Computed release tag: $tag"
           echo "release-tag=$tag" >> $GITHUB_OUTPUT
           echo "prerelease=$prerelease" >> $GITHUB_OUTPUT
-          # create and push the tag if it doesn't already exist
-          if git rev-parse "refs/tags/$tag" >/dev/null 2>&1; then
-            echo "Tag $tag already exists, skipping creation."
-          else
-            git tag "$tag"
-            git push origin "$tag"
+
+          # sync version in csproj and module manifest, then commit before tagging
+          sed -i -E "s|<Version>[^<]+</Version>|<Version>${version}</Version>|" "$csproj"
+          sed -i -E "s|(ModuleVersion = )'[^']*'|\1'${version}'|; s|(Prerelease = )'[^']*'|\1'${PRERELEASE_NAME}'|" "$psd1"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- "$csproj" "$psd1"; then
+            git add "$csproj" "$psd1"
+            git commit -m "chore(release): set version to ${tag} [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
+          git tag "$tag"
+          git push origin "$tag"
 
       - name: Setup .NET 8
         uses: actions/setup-dotnet@v6
