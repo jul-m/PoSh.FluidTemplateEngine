@@ -1,6 +1,6 @@
 @{
     RootModule = 'PoSh.FluidTemplateEngine.dll'
-    ModuleVersion = '2.31.1'
+    ModuleVersion = '2.40.0'
     GUID = '866c43a7-7eb8-4bac-b42e-0ad2398edb34'
     Author = 'jul-m'
     CompanyName = 'jul-m'
